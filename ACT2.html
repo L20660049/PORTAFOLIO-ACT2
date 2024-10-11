@@ -1,0 +1,99 @@
+<!-- ACTIVIDAD 2: Juego Piedra, Papel o Tijera -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        /* Estilos generales del cuerpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f0f0f0; /* Color de fondo */
+            padding: 50px; /* Espaciado alrededor del contenido */
+            margin: 0; /* Eliminar márgenes predeterminados */
+        }
+
+        /* Estilo del título principal */
+        h1 {
+            color: #333; /* Color del texto del título */
+            font-size: 2.5em; /* Tamaño del texto del título */
+            margin-bottom: 20px; /* Espacio debajo del título */
+        }
+
+        /* Contenedor para los botones de elección */
+        .choices {
+            margin: 20px 0; /* Margen vertical alrededor del contenedor */
+        }
+
+        /* Estilo de los botones de elección */
+        .choice-btn {
+            padding: 15px 30px; /* Espaciado interno del botón */
+            margin: 10px; /* Margen alrededor de cada botón */
+            background-color: #4CAF50; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            border: none; /* Sin borde */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            font-size: 20px; /* Tamaño del texto del botón */
+            border-radius: 8px; /* Esquinas redondeadas del botón */
+            transition: background-color 0.3s; /* Transición suave para el cambio de color */
+        }
+
+        /* Efecto hover para los botones */
+        .choice-btn:hover {
+            background-color: #45a049; /* Color de fondo al pasar el mouse */
+        }
+
+        /* Estilo para mostrar el resultado del juego */
+        .result {
+            font-size: 24px; /* Tamaño del texto del resultado */
+            margin-top: 20px; /* Margen superior para separación */
+            font-weight: bold; /* Texto en negrita */
+            color: #333; /* Color del texto del resultado */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¡Juega Piedra, Papel o Tijera!</h1>
+
+    <!-- Botones para las elecciones del jugador -->
+    <div class="choices">
+        <button class="choice-btn" onclick="jugar('Piedra')">Piedra</button>
+        <button class="choice-btn" onclick="jugar('Papel')">Papel</button>
+        <button class="choice-btn" onclick="jugar('Tijera')">Tijera</button>
+    </div>
+
+    <!-- Div para mostrar el resultado del juego -->
+    <div class="result" id="resultado"></div>
+
+    <script>
+        // Función que se llama cada vez que el usuario hace clic en una opción (Piedra, Papel o Tijera).
+        function jugar(eleccionUsuario) {
+            const opciones = ['Piedra', 'Papel', 'Tijera']; // Lista de opciones posibles del juego
+            const eleccionComputadora = opciones[Math.floor(Math.random() * 3)]; // Elección aleatoria de la computadora
+
+            let resultado = ''; // Variable para almacenar el resultado del juego
+
+            // Comparación de elecciones para determinar el resultado
+            if (eleccionUsuario === eleccionComputadora) {
+                resultado = `¡Empate! Ambos eligieron ${eleccionUsuario}.`; // Empate
+            } else if (
+                (eleccionUsuario === 'Piedra' && eleccionComputadora === 'Tijera') ||
+                (eleccionUsuario === 'Papel' && eleccionComputadora === 'Piedra') ||
+                (eleccionUsuario === 'Tijera' && eleccionComputadora === 'Papel')
+            ) {
+                resultado = `¡Ganaste! ${eleccionUsuario} vence a ${eleccionComputadora}.`; // Usuario gana
+            } else {
+                resultado = `¡Perdiste! ${eleccionComputadora} vence a ${eleccionUsuario}.`; // Usuario pierde
+            }
+
+            // Mostrar el resultado en el elemento HTML
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+
+</body>
+</html>
